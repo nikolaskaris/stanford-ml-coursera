@@ -36,7 +36,18 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+h_theta = sigmoid(X * theta);
+% get rid of bias feature
+shift_theta = theta(2:size(theta));
+% set new theta for regularization
+theta_reg = [0; shift_theta];
+% Regularization term
+reg = lambda / (2 * m) * (theta_reg' * theta_reg);
 
+% Regularized Cost Function
+J = 1 / m * (-y' * log(h_theta) - (1 - y') * log(1 - h_theta)) + reg;
+
+grad = 1 / m * (X' * (h_theta - y) + lambda * theta_reg);
 
 
 
