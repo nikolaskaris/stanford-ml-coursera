@@ -24,15 +24,11 @@ p = zeros(size(X, 1), 1);
 
 a1 = [ones(m, 1) X];
 
-z2 = a1 * Theta1';
-
-z2_sig = sigmoid(z2);
+z2_sig = sigmoid(a1 * Theta1');
 
 a2 = [ones(m, 1) z2_sig];
 
-z3 = a2 * Theta2';
-
-a3 = sigmoid(z3);
+a3 = sigmoid(a2 * Theta2');
 
 [v, p] = max(a3, [], 2);
 
